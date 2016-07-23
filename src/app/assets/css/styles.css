@@ -1,4 +1,46 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  height: 100%;
+}
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #eeeeee;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: relative;
+}
+
+.app-component {
+  height: 100%;
+}
+
+md-toolbar {
+  position: relative;
+  z-index: 2;
+}
+
+button[md-fab] {
+  position: absolute;
+  right: 15%;
+  top: 98px;
+  z-index: 1;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  margin: 100px auto;
+}
+
+.card-container md-card {
+  width: 43%;
+  margin: 8px;
 }

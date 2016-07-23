@@ -1,0 +1,23 @@
+md-content {
+  display: block;
+  position: relative;
+  overflow: auto;
+}
+
+.layout-row,
+.layout-column {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.layout-row {
+  flex-direction: row;
+}
+
+.layout-column {
+  flex-direction: column;
+}
+
+.flex {
+  flex: 1;
+}
