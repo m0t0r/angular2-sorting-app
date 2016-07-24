@@ -2,7 +2,7 @@
   <md-toolbar color="primary">
     <span>Angular 2 Sorting App</span>
     <md-toolbar-row></md-toolbar-row>
-    <button md-fab>
+    <button md-fab (click)="run()">
       <md-icon>play_arrow</md-icon>
     </button>
   </md-toolbar>
@@ -11,12 +11,11 @@
       <div class="card-container">
 
         <md-card>
-          <md-card-title>Card with title</md-card-title>
+          <md-card-title>Insertion sort</md-card-title>
           <md-card-subtitle>Subtitle</md-card-subtitle>
           <md-card-content>
-            <p>This is supporting text.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+            <pre>{{ data }}</pre>
+            <h3>{{ message }}</h3>
           </md-card-content>
           <md-card-actions>
             <button md-button>LIKE</button>
