@@ -9,6 +9,8 @@ import { MergeSort } from './common/services/merge-sort/merge-sort.service';
 import { QuickSort } from './common/services/quick-sort/quick-sort.service';
 import { HeapSort } from './common/services/heap-sort/heap-sort.service';
 
+import { CommandService } from './common/services/command/command.service';
+
 @Component({
   moduleId: module.id,
   selector: 'app-root',
@@ -24,14 +26,24 @@ import { HeapSort } from './common/services/heap-sort/heap-sort.service';
 })
 export class AppComponent {
   public data: number[] = [];
+  private isStarted: boolean;
 
   constructor(public insertionSort: InsertionSort,
               public mergeSort: MergeSort,
               public quickSort: QuickSort,
-              public heapSort: HeapSort) {
+              public heapSort: HeapSort,
+              private command: CommandService) {
     this.data = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
   }
 
-  run() {}
+  start() {
+    this.isStarted = true;
+    this.command.sendCommand('start');
+  }
+
+  stop() {
+    this.isStarted = false;
+    this.command.sendCommand('stop');
+  }
 
 }

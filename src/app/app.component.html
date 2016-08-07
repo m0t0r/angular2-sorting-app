@@ -2,8 +2,11 @@
   <md-toolbar color="primary">
     <span>Angular 2 Sorting App</span>
     <md-toolbar-row></md-toolbar-row>
-    <button md-fab (click)="run()">
+    <button *ngIf="!isStarted" md-fab (click)="start()">
       <md-icon>play_arrow</md-icon>
+    </button>
+    <button *ngIf="isStarted" md-fab (click)="stop()">
+      <md-icon>stop</md-icon>
     </button>
   </md-toolbar>
   <div class="layout-row flex">
