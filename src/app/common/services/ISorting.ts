@@ -1,4 +1,7 @@
-interface ISorting {
+export interface ISorting {
 
-  sort(array: Array<number>);
+  sort(array: number[]): void;
+  getNumberOfSteps(): number;
+  getNextStep(): number[];
+  getAlgorithmName(): string;
 }
