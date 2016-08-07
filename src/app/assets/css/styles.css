@@ -37,10 +37,21 @@ button[md-fab] {
   display: flex;
   flex-flow: row wrap;
   width: 80%;
-  margin: 100px auto;
+  margin: 50px auto;
 }
 
 .card-container md-card {
-  width: 43%;
   margin: 8px;
+}
+
+
+.chart {
+  width: 430px;
+  height: 120px;
+  background: #e0e0e0;
+}
+
+.bar {
+  display: inline-block;
+  fill: #9c27b0;
 }

@@ -9,61 +9,10 @@
   <div class="layout-row flex">
     <md-content class="flex">
       <div class="card-container">
-
-        <md-card>
-          <md-card-title>Insertion sort</md-card-title>
-          <md-card-subtitle>Subtitle</md-card-subtitle>
-          <md-card-content>
-            <pre>{{ data }}</pre>
-            <h3>{{ message }}</h3>
-          </md-card-content>
-          <md-card-actions>
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-        </md-card>
-
-        <md-card>
-          <md-card-title>Card with title</md-card-title>
-          <md-card-subtitle>Subtitle</md-card-subtitle>
-          <md-card-content>
-            <p>This is supporting text.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
-          </md-card-content>
-          <md-card-actions>
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-        </md-card>
-
-        <md-card>
-          <md-card-title>Card with title</md-card-title>
-          <md-card-subtitle>Subtitle</md-card-subtitle>
-          <md-card-content>
-            <p>This is supporting text.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
-          </md-card-content>
-          <md-card-actions>
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-        </md-card>
-
-        <md-card>
-          <md-card-title>Card with title</md-card-title>
-          <md-card-subtitle>Subtitle</md-card-subtitle>
-          <md-card-content>
-            <p>This is supporting text.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
-          </md-card-content>
-          <md-card-actions>
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-        </md-card>
+        <sa-chart-card [data]="data" [sorting-service]="insertionSort"></sa-chart-card>
+        <sa-chart-card [data]="data" [sorting-service]="mergeSort"></sa-chart-card>
+        <sa-chart-card [data]="data" [sorting-service]="quickSort"></sa-chart-card>
+        <sa-chart-card [data]="data" [sorting-service]="heapSort"></sa-chart-card>
       </div>
     </md-content>
   </div>
