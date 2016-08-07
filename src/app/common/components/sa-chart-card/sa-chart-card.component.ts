@@ -30,6 +30,7 @@ export class saChartCardComponent implements OnInit {
   private _data: number[];
   private subscription: Subscription;
   private timeouts: any[] = [];
+  private isStarted: boolean;
 
   @Input() data: number[];
   @Input('sorting-service') sortingService: ISorting;
@@ -42,14 +43,8 @@ export class saChartCardComponent implements OnInit {
     this.algorithmName = this.sortingService.getAlgorithmName();
 
     this.subscription = this.command.commandsSource$.subscribe((command) => {
-      if(command === 'start') {
-        this.startSorting();
-      } else if (command === 'stop') {
-        this._data = this.data.slice();
-        this.updateChart();
-        this.sortingService.reset();
-        this.timeouts.map((t) => clearTimeout(t));
-      }
+      if(command === 'start') { this.startSorting(); }
+      else if (command === 'stop') { this.stopSorting(); }
     });
   }
 
@@ -61,6 +56,7 @@ export class saChartCardComponent implements OnInit {
   startSorting() {
     this._data = this.data.slice();
     this.sortingService.sort(this._data);
+    this.isStarted = true;
 
     for(let i = 0; i < this.sortingService.getNumberOfSteps(); i++) {
       let timeout = setTimeout(() => {
@@ -70,6 +66,14 @@ export class saChartCardComponent implements OnInit {
 
       this.timeouts.push(timeout);
     }
+  }
+
+  stopSorting() {
+    this._data = this.data.slice();
+    this.isStarted = false;
+    this.updateChart();
+    this.sortingService.reset();
+    this.timeouts.map((t) => clearTimeout(t));
   }
 
   buildChart() {

@@ -4,7 +4,7 @@
     <div class="chart"></div>
   </md-card-content>
   <md-card-actions>
-    <button md-button (click)="runSorting()">RUN</button>
-    <button md-button>SHARE</button>
+    <button md-button *ngIf="!isStarted" (click)="startSorting()">START</button>
+    <button md-button *ngIf="isStarted" (click)="stopSorting()">STOP</button>
   </md-card-actions>
 </md-card>
