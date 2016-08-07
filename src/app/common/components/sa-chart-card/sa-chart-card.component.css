@@ -1,0 +1,9 @@
+md-card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.time-spent {
+  font-size: .7em;
+}

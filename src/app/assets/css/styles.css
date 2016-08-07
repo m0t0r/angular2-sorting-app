@@ -17,6 +17,10 @@ body {
   position: relative;
 }
 
+p {
+  margin: 0;
+}
+
 .app-component {
   height: 100%;
 }

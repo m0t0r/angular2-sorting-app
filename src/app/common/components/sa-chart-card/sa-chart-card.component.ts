@@ -6,6 +6,8 @@ import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import { CommandService } from './../../services/command/command.service';
 
+import { SaToSecondsPipe } from './../../pipes/sa-to-seconds/sa-to-seconds.pipe';
+
 import * as d3 from 'd3';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -14,12 +16,14 @@ import { Subscription } from 'rxjs/Subscription';
   moduleId: module.id,
   selector: 'sa-chart-card',
   templateUrl: 'sa-chart-card.component.html',
+  styleUrls: ['sa-chart-card.component.css'],
   directives: [
     MD_CARD_DIRECTIVES,
     MD_BUTTON_DIRECTIVES,
     MdIcon
   ],
-  providers: [MdIconRegistry]
+  providers: [MdIconRegistry],
+  pipes: [SaToSecondsPipe]
 })
 export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
   private svg: any;
@@ -32,6 +36,7 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
   private subscription: Subscription;
   private timeouts: any[] = [];
   private _data: number[];
+  private timeSpent: number;
 
   @Input() data: number[];
   @Input('sorting-service') sortingService: ISorting;
@@ -57,6 +62,7 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
         if (Array.isArray(data.previousValue) && Array.isArray(data.currentValue)){
           this._data = data.currentValue.slice();
           this.updateChart();
+          this.timeSpent = 0;
         }
       }
     }
@@ -74,6 +80,7 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
     this.isStarted = true;
 
     for(let i = 0; i < this.sortingService.getNumberOfSteps(); i++) {
+      let timeStart = Date.now();
       let timeout = setTimeout(() => {
         this._data = this.sortingService.getNextStep();
         this.updateChart();
@@ -82,6 +89,8 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
         if (this.sortingService.getNumberOfSteps() === 0) {
           this.timeouts = [];
           this.onSortComplete.emit(this.sortingService.getAlgorithmName());
+          // track time when algorithm has finished sorting
+          this.timeSpent = Date.now() - timeStart;
           this.isStarted = false;
         }
       }, i * 200);

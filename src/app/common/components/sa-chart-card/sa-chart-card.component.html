@@ -1,5 +1,8 @@
 <md-card>
-  <md-card-title>{{ algorithmName }}</md-card-title>
+  <md-card-title>
+    <p class="algorithm-name">{{ algorithmName }}</p>
+    <p class="time-spent" *ngIf="timeSpent">({{ timeSpent | saToSeconds }} sec) </p>
+  </md-card-title>
   <md-card-content>
     <div class="chart"></div>
   </md-card-content>
