@@ -1,6 +1,3 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
 export class Queue {
   private queue: Array<number[]> = [];
   private size: number = 0;
@@ -11,6 +8,7 @@ export class Queue {
   }
 
   dequeue(): number[] {
+    this.size--;
     return this.queue.shift();
   }
 
@@ -19,6 +17,6 @@ export class Queue {
   }
 
   isEmpty(): boolean {
-    return this.size > 0;
+    return this.size === 0;
   }
 }

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Queue } from './queue';
+import { ISorting } from './ISorting';
+import { Queue } from './queue/queue.service';
 
 @Injectable()
 export class InsertionSort implements ISorting {
+  private queue: Queue;
 
-  constructor(private queue: Queue) { }
+  constructor() { this.queue = new Queue(); }
 
   sort(array: Array<number>) {
     // enqueue original array state
@@ -23,21 +25,16 @@ export class InsertionSort implements ISorting {
     }
   }
 
-  playSteps() {
-    // DEBUG
-    for(let i  = 0; i < this.queue.getSize(); i++) {
-      setTimeout(() => {
-        console.log('DEBUG', this.queue.dequeue());
-      }, i * 1000);
-    }
-  }
-
-  getNumberOfSteps(){
+  getNumberOfSteps(): number {
     return this.queue.getSize();
   }
 
-  getNextStep() {
+  getNextStep(): number[] {
     return this.queue.dequeue();
+  }
+
+  getAlgorithmName(): string {
+    return 'Insertion Sort';
   }
 
 }
