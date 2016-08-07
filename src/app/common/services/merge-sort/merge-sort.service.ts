@@ -60,6 +60,10 @@ export class MergeSort implements ISorting {
     return this.queue.dequeue();
   }
 
+  reset(): void {
+    this.queue.setEmpty();
+  }
+
   getAlgorithmName(): string {
     return 'Merge Sort';
   }

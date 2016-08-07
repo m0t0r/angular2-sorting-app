@@ -33,6 +33,10 @@ export class InsertionSort implements ISorting {
     return this.queue.dequeue();
   }
 
+  reset(): void {
+    this.queue.setEmpty();
+  }
+
   getAlgorithmName(): string {
     return 'Insertion Sort';
   }
