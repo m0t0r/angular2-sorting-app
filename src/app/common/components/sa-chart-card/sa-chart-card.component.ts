@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, Input, ElementRef} from '@angular/core';
+import {Component, OnInit, OnDestroy, OnChanges, Input, ElementRef, SimpleChange} from '@angular/core';
 import { ISorting } from './../../services/ISorting';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs/Subscription';
   ],
   providers: [MdIconRegistry]
 })
-export class saChartCardComponent implements OnInit {
+export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
   private svg: any;
   private xScale: any;
   private yScale: any;
@@ -37,7 +37,7 @@ export class saChartCardComponent implements OnInit {
 
   constructor(private elementRef: ElementRef, private command: CommandService) { }
 
-  ngOnInit():any {
+  ngOnInit(): any {
     this._data = this.data.slice();
     this.buildChart();
     this.algorithmName = this.sortingService.getAlgorithmName();
@@ -46,6 +46,18 @@ export class saChartCardComponent implements OnInit {
       if(command === 'start') { this.startSorting(); }
       else if (command === 'stop') { this.stopSorting(); }
     });
+  }
+
+  ngOnChanges(changes: {[propertyName: string]: SimpleChange}): any {
+    for (let propName in changes) {
+      if (propName === 'data') {
+        let data = changes[propName];
+        if (Array.isArray(data.previousValue) && Array.isArray(data.currentValue)){
+          this._data = data.currentValue.slice();
+          this.updateChart();
+        }
+      }
+    }
   }
 
   ngOnDestroy() {

@@ -23,7 +23,7 @@ export class HeapSort implements ISorting {
   }
 
   private buildMaxHeap(array: number[], size: number) {
-    for(let i = Math.floor(array.length / 2 - 1); i > 0 ; i--) {
+    for(let i = Math.floor(array.length / 2 - 1); i >= 0 ; i--) {
       this.siftDown(array, i, size);
     }
   }

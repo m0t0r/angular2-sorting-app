@@ -26,6 +26,22 @@ md-toolbar {
   z-index: 2;
 }
 
+.sa-md-tab-group {
+  margin-top: 20px;
+}
+
+.sa-md-tab-group .md-tab-header {
+  border: none !important;
+}
+
+.sa-md-tab-group .md-tab-label {
+  opacity: 1 !important;
+}
+
+.sa-md-tab-group md-ink-bar {
+  background-color: #9c27b0 !important;
+}
+
 button[md-fab] {
   position: absolute;
   right: 15%;

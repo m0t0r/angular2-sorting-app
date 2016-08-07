@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+import { MD_TABS_DIRECTIVES } from '@angular2-material/tabs';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import { saChartCardComponent } from './common/components/sa-chart-card/sa-chart-card.component';
 
@@ -19,21 +20,71 @@ import { CommandService } from './common/services/command/command.service';
   directives: [
     MD_TOOLBAR_DIRECTIVES,
     MD_BUTTON_DIRECTIVES,
+    MD_TABS_DIRECTIVES,
     MdIcon,
     saChartCardComponent
   ],
   providers: [MdIconRegistry, InsertionSort, MergeSort, QuickSort, HeapSort]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   public data: number[] = [];
   private isStarted: boolean;
 
-  constructor(public insertionSort: InsertionSort,
-              public mergeSort: MergeSort,
-              public quickSort: QuickSort,
-              public heapSort: HeapSort,
-              private command: CommandService) {
-    this.data = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+  constructor(public insertionSort: InsertionSort, public mergeSort: MergeSort,
+              public quickSort: QuickSort, public heapSort: HeapSort,
+              private command: CommandService) { }
+
+  ngOnInit(): void {
+    // generate reverse data on init
+    this.generateReverseData(20);
+  }
+
+  generateData(e) {
+    switch (e.index) {
+      case 0:
+        this.generateReverseData(20);
+        break;
+      case 1:
+        this.generateRandomData(20);
+        break;
+      case 2:
+        this.generateFewUniqueData(20);
+    }
+
+    // make sure to stop running sorting on tab change
+    this.stop();
+  }
+
+  generateReverseData(n: number) {
+    this.data = [];
+    for(let i = n; i >= 1; i--) {
+      this.data.push(i);
+    }
+
+    console.log('generate reverse data');
+  }
+
+  generateRandomData(n: number) {
+    this.data = [];
+    for(let i = 0; i < n; i++) {
+      this.data.push(this.getRandomInt(1, n));
+    }
+
+    console.log('generate random data');
+  }
+
+  getRandomInt(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  generateFewUniqueData(n: number) {
+    let numbers = [5, 7, 10, 15, 19];
+    this.data = [];
+    for(let i = 0; i < n; i++) {
+      this.data.push(numbers[this.getRandomInt(0, 4)]);
+    }
+
+    console.log('generate few unique data');
   }
 
   start() {

@@ -1,7 +1,19 @@
 <div class="app-component layout-column">
   <md-toolbar color="primary">
     <span>Angular 2 Sorting App</span>
-    <md-toolbar-row></md-toolbar-row>
+    <md-toolbar-row>
+      <md-tab-group class="sa-md-tab-group" (selectChange)="generateData($event)">
+        <md-tab>
+          <template md-tab-label>REVERSE</template>
+        </md-tab>
+        <md-tab>
+          <template md-tab-label>RANDOM</template>
+        </md-tab>
+        <md-tab>
+          <template md-tab-label>FEW UNIQUE</template>
+        </md-tab>
+      </md-tab-group>
+    </md-toolbar-row>
     <button *ngIf="!isStarted" md-fab (click)="start()">
       <md-icon>play_arrow</md-icon>
     </button>
