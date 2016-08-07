@@ -1,6 +1,6 @@
 import { Queue } from './queue.service';
 
-fdescribe('Service: Queue', () => {
+describe('Service: Queue', () => {
   var queue: Queue;
 
   beforeEach(() => {

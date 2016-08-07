@@ -1,6 +1,6 @@
 import { SaToSecondsPipe } from './sa-to-seconds.pipe';
 
-fdescribe('Pipe: saToSeconds', () => {
+describe('Pipe: saToSeconds', () => {
 
   it('should be able to be instantiated', () => {
     let pipe = new SaToSecondsPipe();
