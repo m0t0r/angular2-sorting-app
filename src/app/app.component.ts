@@ -29,6 +29,7 @@ import { CommandService } from './common/services/command/command.service';
 export class AppComponent implements OnInit{
   public data: number[] = [];
   private isStarted: boolean;
+  private counter: number = 0;
 
   constructor(public insertionSort: InsertionSort, public mergeSort: MergeSort,
               public quickSort: QuickSort, public heapSort: HeapSort,
@@ -39,8 +40,15 @@ export class AppComponent implements OnInit{
     this.generateReverseData(20);
   }
 
-  generateData(e) {
-    switch (e.index) {
+  onTabChange(e) {
+    this.generateData(e.index);
+
+    // make sure to stop running sorting on tab change
+    this.stop();
+  }
+
+  generateData(tabIndex) {
+    switch (tabIndex) {
       case 0:
         this.generateReverseData(20);
         break;
@@ -50,9 +58,6 @@ export class AppComponent implements OnInit{
       case 2:
         this.generateFewUniqueData(20);
     }
-
-    // make sure to stop running sorting on tab change
-    this.stop();
   }
 
   generateReverseData(n: number) {
@@ -60,8 +65,6 @@ export class AppComponent implements OnInit{
     for(let i = n; i >= 1; i--) {
       this.data.push(i);
     }
-
-    console.log('generate reverse data');
   }
 
   generateRandomData(n: number) {
@@ -69,8 +72,6 @@ export class AppComponent implements OnInit{
     for(let i = 0; i < n; i++) {
       this.data.push(this.getRandomInt(1, n));
     }
-
-    console.log('generate random data');
   }
 
   getRandomInt(min: number, max: number) {
@@ -83,12 +84,11 @@ export class AppComponent implements OnInit{
     for(let i = 0; i < n; i++) {
       this.data.push(numbers[this.getRandomInt(0, 4)]);
     }
-
-    console.log('generate few unique data');
   }
 
   start() {
     this.isStarted = true;
+    this.counter = 0;
     this.command.sendCommand('start');
   }
 
@@ -97,4 +97,9 @@ export class AppComponent implements OnInit{
     this.command.sendCommand('stop');
   }
 
+  onSortCompleteCount(algName) {
+    this.counter++;
+    this.isStarted = this.counter < 4;
+    console.log(`[INFO] ${algName} has just finished sorting!`);
+  }
 }

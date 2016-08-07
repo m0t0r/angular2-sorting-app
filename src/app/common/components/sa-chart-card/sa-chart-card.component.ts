@@ -1,4 +1,5 @@
-import {Component, OnInit, OnDestroy, OnChanges, Input, ElementRef, SimpleChange} from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input, Output, ElementRef,
+  SimpleChange, EventEmitter } from '@angular/core';
 import { ISorting } from './../../services/ISorting';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -27,13 +28,14 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
   private w: number = 430;
   private h: number = 120;
   private algorithmName: string;
-  private _data: number[];
+  private isStarted: boolean;
   private subscription: Subscription;
   private timeouts: any[] = [];
-  private isStarted: boolean;
+  private _data: number[];
 
   @Input() data: number[];
   @Input('sorting-service') sortingService: ISorting;
+  @Output() onSortComplete = new EventEmitter();
 
   constructor(private elementRef: ElementRef, private command: CommandService) { }
 
@@ -63,6 +65,7 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy() {
     // prevent memory leak when component destroyed
     this.subscription.unsubscribe();
+    this.timeouts = [];
   }
 
   startSorting() {
@@ -74,6 +77,13 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
       let timeout = setTimeout(() => {
         this._data = this.sortingService.getNextStep();
         this.updateChart();
+
+        // sorting has finished
+        if (this.sortingService.getNumberOfSteps() === 0) {
+          this.timeouts = [];
+          this.onSortComplete.emit(this.sortingService.getAlgorithmName());
+          this.isStarted = false;
+        }
       }, i * 200);
 
       this.timeouts.push(timeout);
@@ -86,6 +96,7 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
     this.updateChart();
     this.sortingService.reset();
     this.timeouts.map((t) => clearTimeout(t));
+    this.timeouts = [];
   }
 
   buildChart() {

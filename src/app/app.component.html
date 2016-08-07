@@ -2,7 +2,7 @@
   <md-toolbar color="primary">
     <span>Angular 2 Sorting App</span>
     <md-toolbar-row>
-      <md-tab-group class="sa-md-tab-group" (selectChange)="generateData($event)">
+      <md-tab-group class="sa-md-tab-group" (selectChange)="onTabChange($event)">
         <md-tab>
           <template md-tab-label>REVERSE</template>
         </md-tab>
@@ -24,10 +24,10 @@
   <div class="layout-row flex">
     <md-content class="flex">
       <div class="card-container">
-        <sa-chart-card [data]="data" [sorting-service]="insertionSort"></sa-chart-card>
-        <sa-chart-card [data]="data" [sorting-service]="mergeSort"></sa-chart-card>
-        <sa-chart-card [data]="data" [sorting-service]="quickSort"></sa-chart-card>
-        <sa-chart-card [data]="data" [sorting-service]="heapSort"></sa-chart-card>
+        <sa-chart-card [data]="data" [sorting-service]="insertionSort" (onSortComplete)="onSortCompleteCount($event)"></sa-chart-card>
+        <sa-chart-card [data]="data" [sorting-service]="mergeSort" (onSortComplete)="onSortCompleteCount($event)"></sa-chart-card>
+        <sa-chart-card [data]="data" [sorting-service]="quickSort" (onSortComplete)="onSortCompleteCount($event)"></sa-chart-card>
+        <sa-chart-card [data]="data" [sorting-service]="heapSort" (onSortComplete)="onSortCompleteCount($event)"></sa-chart-card>
       </div>
     </md-content>
   </div>
