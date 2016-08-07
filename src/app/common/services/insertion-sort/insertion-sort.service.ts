@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ISorting } from './ISorting';
-import { Queue } from './queue/queue.service';
+import { ISorting } from '../ISorting';
+import { Queue } from '../queue/queue.service';
 
 @Injectable()
 export class InsertionSort implements ISorting {
@@ -36,5 +36,4 @@ export class InsertionSort implements ISorting {
   getAlgorithmName(): string {
     return 'Insertion Sort';
   }
-
 }
