@@ -16,6 +16,11 @@ export class Queue {
     return this.size;
   }
 
+  setEmpty(): void {
+    this.queue.length = 0;
+    this.size = 0;
+  }
+
   isEmpty(): boolean {
     return this.size === 0;
   }

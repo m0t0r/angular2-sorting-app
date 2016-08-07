@@ -1,6 +1,6 @@
 import { Queue } from './queue.service';
 
-describe('Service: Queue', () => {
+fdescribe('Service: Queue', () => {
   var queue: Queue;
 
   beforeEach(() => {
@@ -40,5 +40,14 @@ describe('Service: Queue', () => {
 
     queue.enqueue(items);
     expect(queue.isEmpty()).toBe(false);
-  })
+  });
+
+  it('should be able to empty itself', () => {
+    let items = [1, 2, 3];
+    queue.enqueue(items);
+    expect(queue.isEmpty()).toBe(false);
+
+    queue.setEmpty();
+    expect(queue.isEmpty()).toBe(true);
+  });
 });
