@@ -1,5 +1,7 @@
 # Angular2 Sorting App
 
+[![Build Status](https://travis-ci.org/m0t0r/angular2-sorting-app.svg?branch=master)](https://travis-ci.org/m0t0r/angular2-sorting-app)
+
 An Angular 2.0 app which visualizes classical sorting algorithms.
 
 ## Preview
