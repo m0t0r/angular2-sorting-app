@@ -99,7 +99,7 @@ export class AppComponent implements OnInit{
 
   onSortCompleteCount(algName) {
     this.counter++;
-    this.isStarted = this.counter < 4;
+    this.isStarted = this.isStarted && this.counter < 4;
     console.log(`[INFO] ${algName} has just finished sorting!`);
   }
 }

@@ -78,6 +78,7 @@ export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
     this._data = this.data.slice();
     this.sortingService.sort(this._data);
     this.isStarted = true;
+    this.timeSpent = 0;
 
     for(let i = 0; i < this.sortingService.getNumberOfSteps(); i++) {
       let timeStart = Date.now();
