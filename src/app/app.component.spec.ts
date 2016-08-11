@@ -2,11 +2,11 @@
 
 import { addProviders, inject } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { InsertionSort } from './common/services/insertion-sort/insertion-sort.service';
-import { MergeSort } from './common/services/merge-sort/merge-sort.service';
-import { QuickSort } from './common/services/quick-sort/quick-sort.service';
-import { HeapSort } from './common/services/heap-sort/heap-sort.service';
-import { CommandService } from './common/services/command/command.service';
+import { InsertionSort } from './sorting/services/insertion-sort/insertion-sort.service';
+import { MergeSort } from './sorting/services/merge-sort/merge-sort.service';
+import { QuickSort } from './sorting/services/quick-sort/quick-sort.service';
+import { HeapSort } from './sorting/services/heap-sort/heap-sort.service';
+import { CommandService } from './sorting/services/command/command.service';
 
 describe('App: Angular2SortingApp', () => {
   beforeEach(() => {

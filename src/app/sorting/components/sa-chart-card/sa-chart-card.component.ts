@@ -1,12 +1,8 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input, Output, ElementRef,
-  SimpleChange, EventEmitter } from '@angular/core';
+  SimpleChange, EventEmitter
+} from '@angular/core';
 import { ISorting } from './../../services/ISorting';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import { CommandService } from './../../services/command/command.service';
-
-import { SaToSecondsPipe } from './../../pipes/sa-to-seconds/sa-to-seconds.pipe';
 
 import * as d3 from 'd3';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,16 +12,9 @@ import { Subscription } from 'rxjs/Subscription';
   moduleId: module.id,
   selector: 'sa-chart-card',
   templateUrl: 'sa-chart-card.component.html',
-  styleUrls: ['sa-chart-card.component.css'],
-  directives: [
-    MD_CARD_DIRECTIVES,
-    MD_BUTTON_DIRECTIVES,
-    MdIcon
-  ],
-  providers: [MdIconRegistry],
-  pipes: [SaToSecondsPipe]
+  styleUrls: ['sa-chart-card.component.css']
 })
-export class saChartCardComponent implements OnInit, OnDestroy, OnChanges {
+export class SaChartCardComponent implements OnInit, OnDestroy, OnChanges {
   private svg: any;
   private xScale: any;
   private yScale: any;

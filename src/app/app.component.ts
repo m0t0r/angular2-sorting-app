@@ -1,30 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_TABS_DIRECTIVES } from '@angular2-material/tabs';
-import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-import { saChartCardComponent } from './common/components/sa-chart-card/sa-chart-card.component';
+import { InsertionSort } from './sorting/services/insertion-sort/insertion-sort.service';
+import { MergeSort } from './sorting/services/merge-sort/merge-sort.service';
+import { QuickSort } from './sorting/services/quick-sort/quick-sort.service';
+import { HeapSort } from './sorting/services/heap-sort/heap-sort.service';
 
-import { InsertionSort } from './common/services/insertion-sort/insertion-sort.service';
-import { MergeSort } from './common/services/merge-sort/merge-sort.service';
-import { QuickSort } from './common/services/quick-sort/quick-sort.service';
-import { HeapSort } from './common/services/heap-sort/heap-sort.service';
-
-import { CommandService } from './common/services/command/command.service';
+import { CommandService } from './sorting/services/command/command.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
-  directives: [
-    MD_TOOLBAR_DIRECTIVES,
-    MD_BUTTON_DIRECTIVES,
-    MD_TABS_DIRECTIVES,
-    MdIcon,
-    saChartCardComponent
-  ],
-  providers: [MdIconRegistry, InsertionSort, MergeSort, QuickSort, HeapSort]
+  styleUrls: ['app.component.css']
 })
 export class AppComponent implements OnInit{
   public data: number[] = [];
